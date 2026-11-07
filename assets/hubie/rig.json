@@ -1,0 +1,46 @@
+{
+  "bob": 12,
+  "sway": 9,
+  "breathAmp": 0.022,
+  "tiltDeg": 3.2,
+  "lookAmp": 10,
+  "speakBobBoost": 16,
+  "mouth": {
+    "x": 0.43,
+    "y": 0.425,
+    "w": 0.17,
+    "h": 0.045
+  },
+  "eyes": {
+    "x": 0.455,
+    "y": 0.371,
+    "w": 0.215,
+    "h": 0.08
+  },
+  "blinkMs": [
+    1400,
+    3200
+  ],
+  "blinkDurationMs": 110,
+  "layers": {
+    "mouthOpen": "layers/mouth_open.png",
+    "mouthClosed": "layers/mouth_closed.png",
+    "lidClosed": "layers/lid_closed.png"
+  },
+  "wave": {
+    "x": 0.82,
+    "y": 0.62
+  },
+  "nod": {
+    "ms": 1100,
+    "amp": 16
+  },
+  "shrug": {
+    "ms": 1400,
+    "x": 0.18
+  },
+  "lookChat": {
+    "ms": 1300,
+    "pull": 0.75
+  }
+}

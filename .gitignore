@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+
+# Env & secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*
+*credentials*.json
+
+# Build output
+dist/
+build/
+
+# Vendored binaries + runtime artefacts (scripts/bootstrap.mjs recreates them)
+vendor/
+records/
+data/viewers.json
+data/viewers.json.tmp
+*.raw
+dbg*.mjs
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Large binaries: do NOT force-add the art pack zip without Git LFS
+# Use `git lfs track "*.zip"` first. See README Safety section.
+*.zip
+*.7z
+*.tar.gz
+
+# Official Hubie art fetched from housebets.com — Housebets' artwork, not redistributed here
+assets/hubie/*
+assets/hubie/*.webp
+!assets/hubie/README.md
+!assets/hubie/rig.json
+
+# Our own drawn animation overlays (scripts/make-layers.mjs) ARE tracked
+!assets/hubie/layers/
+!assets/hubie/layers/*.png
+
+# Legacy placeholder folder from the scaffold days
+assets/art-pack/**
+
+# Local playback/rig overrides
+assets/hubie/rig.local.json
+
+# local puppeteer profile (never commit)
+data/chrome-profile/
+
+# Telegram bot state (owner chat id)
+data/telegram.json
