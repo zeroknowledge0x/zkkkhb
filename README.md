@@ -32,6 +32,42 @@ Chrome (CDP)  →  capture pump  →  perception (DOM)  →  brain (LLM)  →  v
 The host only speaks about things it can see: perception supplies the round result, and
 the renderer draws the same numbers the viewer sees.
 
+## Setup on a fresh machine
+
+Three things deliberately do **not** live in git, because they are machine-bound or secret:
+the API/stream keys, the browser profile that holds the table login, and the local TTS
+binaries. Everything else is in this repository.
+
+```bash
+git clone https://github.com/zeroknowledge0x/zkkkhb
+cd zkkkhb
+npm install
+npm run setup          # tells you exactly what is still missing
+```
+
+`npm run setup` checks Node, dependencies, the browser, ffmpeg, `.env` keys, the login
+profile and the TTS assets for your chosen engine. It exits non-zero while anything is a
+blocker, and prints the fix next to each one. Add `-- --probe` to also check that the game
+lobby is reachable from this machine's egress country.
+
+| Missing piece | How to provide it |
+| --- | --- |
+| `.env` | `cp .env.example .env`, then fill `STREAM_KEY`, `LLM_API_KEY`, and `XAI_API_KEY` when `TTS_ENGINE=xai` |
+| table login | Copy `data/chrome-profile` from the streaming box, or run `start-hubie-headed.bat` once, log in, and keep the profile |
+| local TTS | Only for `TTS_ENGINE=piper` or `kokoro`: `npm run bootstrap` fetches `vendor/` |
+| ffmpeg | Install it and put it on `PATH` (or set `FFMPEG_PATH`) |
+
+A logged-out profile and a blocked egress country are the two failures that look like code
+bugs but are not: the first shows the lobby in a logged-out state, the second returns a
+Cloudflare challenge instead of the table. `npm run setup -- --probe` distinguishes them.
+
+Then:
+
+```bash
+npm run start          # headless, streams to the configured RTMP target
+npm test               # 45 offline tests, no browser needed
+```
+
 ## Quick start
 
 ```bash
